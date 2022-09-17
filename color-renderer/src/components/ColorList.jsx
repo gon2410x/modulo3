@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Component, useState } from "react";
 import Color from "./Color";
 
 const colors = [
@@ -25,34 +25,50 @@ const colors = [
 ];
 
 
-const ColorList = () => {
+class ColorList extends Component {
 
-  const [colorList, setColorList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  
-  const cargarColores = () => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setColorList(colors)
-      setIsLoading(false)
-    }, 3000);
+constructor(props){
+    super(props)
+    this.state = {
+        colorList: [],
+        isLoading: false
+    }
+}
+
+  render(){
+    const cargarColores = () => {
+        // setIsLoading(true)
+        this.setState({ isLoading: true})
+        setTimeout(() => {
+            this.setState({
+                colorList: colors,
+                isLoading: false
+            })
+            //   setColorList(colors)
+        //   setIsLoading(false)
+        }, 3000);
+      }
+
+      const { colorList, isLoading} = this.state
+
+      return (
+        <>
+            <h1>{this.props.title}</h1>
+          <button onClick={() => cargarColores()}>Click me</button>
+          {isLoading && <h1>Loading</h1>}
+          <div>
+            {
+             colorList.map( color => 
+              <Color name={color.name} hex={color.hex} key={color.id} id={color.id}/>
+               )
+            }
+          </div>
+        </>
+    
+    
+      );
   }
 
-  return (
-    <>
-      <button onClick={() => cargarColores()}>Click me</button>
-      {isLoading && <h1>Loading</h1>}
-      <div>
-        {
-         colorList.map( color => 
-          <Color name={color.name} hex={color.hex} key={color.id} id={color.id}/>
-           )
-        }
-      </div>
-    </>
-
-
-  );
 }
 
 export default ColorList;

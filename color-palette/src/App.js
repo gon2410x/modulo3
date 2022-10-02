@@ -7,6 +7,8 @@ import { getColorPalettes } from './service';
 import { ColorPalettesContext} from './context/ColorPalettesContext'
 import Navigation from './routes/Navigation/Navigation';
 import Login from './routes/Login/Login';
+import LoginRef from './routes/Login/LoginRef';
+import LoginControlled from './routes/Login/LoginControlled';
 import PaletteCreation from './routes/Palette/PaletteCreation';
 
 function App() {
@@ -26,7 +28,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Navigation/>}>
               <Route index element={<Home/>}/>
-              <Route path='login' element={<Login/>}/>
+              <Route path='login' element={<LoginRef/>}/>
               <Route path='palette/:id' element={<PaletteDisplay/>}/>
               <Route path='palette/create' element={<PaletteCreation/>}/>
             </Route>

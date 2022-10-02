@@ -17,7 +17,7 @@ root.render(
         <ColorPalettesProvider>
           <FavoritesProvider>
             <FiltersProvider>
-                <App/> 
+                <App /> 
             </FiltersProvider>
           </FavoritesProvider>
         </ColorPalettesProvider>
